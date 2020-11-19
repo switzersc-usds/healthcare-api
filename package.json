@@ -4,7 +4,7 @@
   "description": "Fast and FHIRy healthcare API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --timeout 10000",
     "start": "nodemon -w ./ api.js"
   },
   "author": "Shelby Switzer",
@@ -16,6 +16,10 @@
     "openapi-enforcer-middleware": "^1.2.2"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "chai-openapi-response-validator": "^0.10.0",
+    "mocha": "^8.2.1",
     "nodemon": "^2.0.4"
   }
 }
