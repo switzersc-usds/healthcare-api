@@ -11,22 +11,21 @@ exports.createSingle = function (req, res) {
   // the middleware has already validated the request
 
   const body = req.body
-  const task = {
+  const patient = {
     id: index++,
-    title: body.title,
-    due: body.due,
-    completed: body.completed
+    given_name: body.given_name,
+    family_name: body.family_name
   }
-  store.push(task)
+  store.push(patient)
 
   // the response will be validated and serialized by the middleware
-  res.send(task)
+  res.send(patient)
 }
 
 exports.deleteSingle = function (req, res) {
   // no need to validate the body because
   // the middleware has already validated the request
-  const index = store.findIndex(task => task.id === req.params.id)
+  const index = store.findIndex(patient => patient.id === req.params.id)
   if (index !== -1) store.splice(index, 1)
 
   // the response will be validated and serialized by the middleware
@@ -37,11 +36,11 @@ exports.getSingle = function (req, res) {
   // no need to validate the body because
   // the middleware has already validated the request
 
-  const task = findTask(req.params.task_id)
+  const patient = findTask(req.params.rid)
 
   // the response will be validated and serialized by the middleware
-  if (task) {
-    res.send(task)
+  if (patient) {
+    res.send(patient)
   } else {
     res.sendStatus(404)
   }
@@ -51,15 +50,14 @@ exports.updateSingle = function (req, res) {
   // no need to validate the body because
   // the middleware has already validated the request
 
-  const task = findTask(req.params.id)
+  const patient = findTask(req.params.id)
 
   // the response will be validated and serialized by the middleware
-  if (task) {
+  if (patient) {
     const body = req.body
-    task.title = body.title
-    task.due = body.due
-    task.completed = body.completed
-    res.send(task)
+    patient.given_name = body.given_name
+    patient.family_name = body.family_name
+    res.send(patient)
   } else {
     res.sendStatus(404)
   }

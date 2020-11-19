@@ -6,7 +6,7 @@ module.exports = function (dbClient) {
         // no need to validate the body because
         // the middleware has already validated the request
         const query = {
-          text: 'INSERT INTO patients (active, given_name, gender, photo, contact, link) VALUES ($1, $2, $3) RETURNING *',
+          text: 'INSERT INTO patients (active, given_name, family_name, gender) VALUES ($1, $2, $3) RETURNING *',
           values: [  ]
         }
         const { rows } = await dbClient.query(query)

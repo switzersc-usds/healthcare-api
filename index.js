@@ -19,6 +19,7 @@ const controllerDirectory = path.resolve(__dirname, "controllers");
 const mockDirectory = path.resolve(__dirname, "mock-controllers");
 const pathToOpenApiDoc = path.resolve(__dirname, "openapi.json");
 
+
 // Create an enforcer middleware instance
 const enforcer = Enforcer(pathToOpenApiDoc);
 
@@ -28,7 +29,17 @@ enforcer.mocks(mockDirectory, false).catch(console.error);
 
 // Add controller middleware to the enforcer middleware .
 // This middleware will handle requests for real data.
-enforcer.controllers(controllerDirectory).catch(console.error);
+if (process.env.POSTGRES_HOST) {
+  const pool = new Pool({
+    user: process.env.POSTGRES_USER,
+    host: process.env.POSTGRES_HOST,
+    database: process.env.POSTGRES_DB,
+    password: process.env.POSTGRES_PASSWORD
+  })
+
+  enforcer.controllers(path.resolve(__dirname, 'controllers'), pool)
+    .catch(console.error)
+}
 
 // Add fallback mocking middleware to the enforcer middleware.
 // This middleware will automatically run mocking if the
