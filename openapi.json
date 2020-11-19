@@ -63,8 +63,7 @@
             "name": "birthdate",
             "in": "query",
             "schema": {
-              "type": "string",
-              "pattern": "([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?"
+              "type": "string"
             },
             "description": "The patient\u0027s date of birth\u003cbr /\u003e\n\u003cem\u003eNOTE\u003c/em\u003e: This US Core SearchParameter definition extends the usage context of\n\u003ca href\u003d\"http://hl7.org/fhir/R4/extension-capabilitystatement-expectation.html\"\u003ecapabilitystatement-expectation\u003c/a\u003e\n extension to formally express implementer conformannce expectations for these elements:\u003cbr /\u003e\n - multipleAnd\u003cbr /\u003e\n - multipleOr\u003cbr /\u003e\n - comparator\u003cbr /\u003e\n - modifier\u003cbr /\u003e\n - chain\u003cbr /\u003e\n\n "
           },
@@ -281,261 +280,137 @@
     }
   },
   "components": {
-    "schemas":{
-      "Patient": {
-        "description": "",
-        "type": "object",
+    "schemas": { 
+      "HumanName": {
+        "description": "A human\u0027s name with the ability to identify parts and usage.",
         "properties": {
-          "resourceType": {
-            "type": "string",
-            "minLength": 1
-          },
           "id": {
-            "type": "string",
-            "minLength": 1
+            "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+            "type": "string"
           },
-          "text": {
-            "type": "object",
-            "properties": {
-              "status": {
-                "type": "string",
-                "minLength": 1
-              },
-              "div": {
-                "type": "string",
-                "minLength": 1
-              }
-            },
-            "required": [
-              "status",
-              "div"
+          "use": {
+            "description": "Identifies the purpose for this name.",
+            "enum": [
+              "usual",
+              "official",
+              "temp",
+              "nickname",
+              "anonymous",
+              "old",
+              "maiden"
             ]
           },
-          "identifier": {
-            "type": "array",
-            "uniqueItems": true,
-            "minItems": 1,
+          "text": {
+            "description": "Specifies the entire name as it should be displayed e.g. on an application UI. This may be provided instead of or as well as the specific parts.",
+            "type": "string"
+          },
+          "family": {
+            "description": "The part of a name that links to the genealogy. In some cultures (e.g. Eritrea) the family name of a son is the first name of his father.",
+            "type": "string"
+          },
+          "given": {
+            "description": "Given name.",
             "items": {
-              "required": [
-                "use",
-                "system",
-                "value"
-              ],
-              "properties": {
-                "use": {
-                  "type": "string",
-                  "minLength": 1
-                },
-                "type": {
-                  "type": "object",
-                  "properties": {
-                    "coding": {
-                      "type": "array",
-                      "uniqueItems": true,
-                      "minItems": 1,
-                      "items": {
-                        "required": [
-                          "system",
-                          "code"
-                        ],
-                        "properties": {
-                          "system": {
-                            "type": "string",
-                            "minLength": 1
-                          },
-                          "code": {
-                            "type": "string",
-                            "minLength": 1
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "required": [
-                    "coding"
-                  ]
-                },
-                "system": {
-                  "type": "string",
-                  "minLength": 1
-                },
-                "value": {
-                  "type": "string",
-                  "minLength": 1
-                }
-              }
-            }
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "prefix": {
+            "description": "Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the start of the name.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "suffix": {
+            "description": "Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the end of the name.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Identifier": {
+        "description": "An identifier - identifies some entity uniquely and unambiguously. Typically this is used for business identifiers.",
+        "properties": {
+          "id": {
+            "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+            "type": "string"
+          },
+          "use": {
+            "description": "The purpose of this identifier.",
+            "enum": [
+              "usual",
+              "official",
+              "temp",
+              "secondary",
+              "old"
+            ]
+          },
+          "value": {
+            "description": "The portion of the identifier typically relevant to the user and which is unique within the context of the system.",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Patient": {
+        "description": "Demographics and other administrative information about an individual or animal receiving care or other health-related services.",
+        "properties": {
+          "resourceType": {
+            "description": "This is a Patient resource",
+            "type": "string"
+          },
+          "id": {
+            "description": "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
+            "type": "string"
+          },
+          "identifier": {
+            "description": "An identifier for this patient.",
+            "items": {
+              "$ref": "#/components/schemas/Identifier"
+            },
+            "type": "array"
           },
           "active": {
+            "description": "Whether this patient record is in active use. \nMany systems use this property to mark as non-current patients, such as those that have not been seen for a period of time based on an organization\u0027s business rules.\n\nIt is often used to filter patient lists to exclude inactive patients\n\nDeceased patients may also be marked as inactive for the same reasons, but may be active for some time after death.",
             "type": "boolean"
           },
           "name": {
-            "type": "array",
-            "uniqueItems": true,
-            "minItems": 1,
+            "description": "A name associated with the individual.",
             "items": {
-              "required": [
-                "use"
-              ],
-              "properties": {
-                "use": {
-                  "type": "string",
-                  "minLength": 1
-                },
-                "family": {
-                  "type": "array",
-                  "items": {
-                    "properties": {}
-                  }
-                },
-                "given": {
-                  "type": "array",
-                  "items": {
-                    "properties": {}
-                  }
-                }
-              }
-            }
+              "$ref": "#/components/schemas/HumanName"
+            },
+            "type": "array"
           },
           "gender": {
-            "type": "string",
-            "minLength": 1
-          },
-          "photo": {
-            "type": "array",
-            "uniqueItems": true,
-            "minItems": 1,
-            "items": {
-              "required": [
-                "contentType",
-                "data"
-              ],
-              "properties": {
-                "contentType": {
-                  "type": "string",
-                  "minLength": 1
-                },
-                "data": {
-                  "type": "string",
-                  "minLength": 1
-                }
-              }
-            }
-          },
-          "contact": {
-            "type": "array",
-            "uniqueItems": true,
-            "minItems": 1,
-            "items": {
-              "properties": {
-                "relationship": {
-                  "type": "array",
-                  "uniqueItems": true,
-                  "minItems": 1,
-                  "items": {
-                    "properties": {
-                      "coding": {
-                        "type": "array",
-                        "uniqueItems": true,
-                        "minItems": 1,
-                        "items": {
-                          "required": [
-                            "system",
-                            "code"
-                          ],
-                          "properties": {
-                            "system": {
-                              "type": "string",
-                              "minLength": 1
-                            },
-                            "code": {
-                              "type": "string",
-                              "minLength": 1
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "organization": {
-                  "type": "object",
-                  "properties": {
-                    "reference": {
-                      "type": "string",
-                      "minLength": 1
-                    },
-                    "display": {
-                      "type": "string",
-                      "minLength": 1
-                    }
-                  },
-                  "required": [
-                    "reference",
-                    "display"
-                  ]
-                }
-              }
-            }
-          },
-          "managingOrganization": {
-            "type": "object",
-            "properties": {
-              "reference": {
-                "type": "string",
-                "minLength": 1
-              },
-              "display": {
-                "type": "string",
-                "minLength": 1
-              }
-            },
-            "required": [
-              "reference",
-              "display"
+            "description": "Administrative Gender - the gender that the patient is considered to have for administration and record keeping purposes.",
+            "enum": [
+              "male",
+              "female",
+              "other",
+              "unknown"
             ]
           },
-          "link": {
-            "type": "array",
-            "uniqueItems": true,
-            "minItems": 1,
-            "items": {
-              "required": [
-                "type"
-              ],
-              "properties": {
-                "other": {
-                  "type": "object",
-                  "properties": {
-                    "reference": {
-                      "type": "string",
-                      "minLength": 1
-                    }
-                  },
-                  "required": [
-                    "reference"
-                  ]
-                },
-                "type": {
-                  "type": "string",
-                  "minLength": 1
-                }
-              }
-            }
+          "birthDate": {
+            "description": "The date of birth for the individual.",
+            "format": "date",
+            "type": "string"
+          },
+          "deceasedBoolean": {
+            "description": "Indicates if the individual is deceased or not.",
+            "type": "boolean"
+          },
+          "deceasedDateTime": {
+            "description": "Indicates if the individual is deceased or not.",
+            "type": "string"
           }
         },
+        "additionalProperties": false,
         "required": [
-          "resourceType",
-          "id",
-          "text",
-          "identifier",
-          "active",
-          "name",
-          "gender",
-          "photo",
-          "contact",
-          "managingOrganization",
-          "link"
+          "resourceType"
         ]
       }
     },
