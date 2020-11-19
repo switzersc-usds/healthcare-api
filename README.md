@@ -4,8 +4,7 @@ This is a prototype API to demo a design-first approach to API development, usin
 
 The API itself is Express middleware generated with [OpenAPI Enforcer](https://github.com/byu-oit/openapi-enforcer). This middleware provides mock server generation and request validation (validating requests/responses comply with the OpenAPI definition).
 
-This was originally made for a conference talk at [Lesbians Who Tech Debug 2020](https://lesbianswhotech.org/debug2020/). The slides from my presentation are available as PDF in this repo -- `
-This was originally made for a conference talk at [Lesbians Who Tech Debug 2020](https://lesbianswhotech.org/debug2020/). The slides from my presentation are available as PDF in this repo -- `build-a-healthcare-api-in-30-min.pdf`
+This was originally made for a conference talk at [Lesbians Who Tech Debug 2020](https://lesbianswhotech.org/debug2020/). The slides from my presentation are available as PDF in this repo - `build-a-healthcare-api-in-30-min.pdf`
 
 Different functionality is present in different branches of this repo:
 * `main` - mock server from openapi definition
