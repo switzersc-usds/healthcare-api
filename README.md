@@ -7,6 +7,11 @@ The API itself is Express middleware generated with [OpenAPI Enforcer](https://g
 This was originally made for a conference talk at [Lesbians Who Tech Debug 2020](https://lesbianswhotech.org/debug2020/). The slides from my presentation are available as PDF in this repo -- `
 This was originally made for a conference talk at [Lesbians Who Tech Debug 2020](https://lesbianswhotech.org/debug2020/). The slides from my presentation are available as PDF in this repo -- `build-a-healthcare-api-in-30-min.pdf`
 
+Different functionality is present in different branches of this repo:
+* `main` - mock server from openapi definition
+* `testing` - mock server with chai tests
+* `controllers` - real server with postgres database (needs some work)
+
 ## Getting Started
 
 0. Clone this repo.
