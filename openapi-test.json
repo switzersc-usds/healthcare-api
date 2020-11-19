@@ -1,0 +1,506 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+      "title": "US Core Server CapabilityStatement",
+      "description": "This Section describes the expected capabilities of the US Core Server actor which is responsible for providing responses to the queries submitted by the US Core Requestors. The complete list of FHIR profiles, RESTful operations, and search parameters supported by US Core Servers are defined. Systems implementing this capability statement should meet the ONC 2015 Common Clinical Data Set (CCDS) access requirement for Patient Selection 170.315(g)(7) and Application Access - Data Category Request 170.315(g)(8) and and the ONC [U.S. Core Data for Interoperability (USCDI)](https://www.healthit.gov/isa/sites/isa/files/2020-03/USCDI-Version1-2020-Final-Standard.pdf).  US Core Clients have the option of choosing from this list to access necessary data based on their local use cases and other contextual requirements.",
+      "license": {
+        "name": "Creative Commons Zero v1.0 Universal",
+        "url": "http://spdx.org/licenses/CC0-1.0.html"
+      },
+      "version": "3.1.1",
+      "contact": {
+        "name": "HL7 International - US Realm Steering Committee"
+      }
+    },
+    "externalDocs": {
+      "url": "http://hl7.org/fhir/us/core/CapabilityStatement/us-core-server",
+      "description": "FHIR CapabilityStatement"
+    },
+    "paths": {
+      "/Patient": {
+        "summary": "Manager for resources of type Patient",
+        "description": "The Manager for resources of type Patient: provides services to manage the collection of all the Patient instances",
+        "get": {
+          "x-controller": "patients",
+          "x-operation": "getList",
+          "summary": "Search all resources of type Patient based on a set of criteria",
+          "operationId": "searchPatient",
+          "responses": {
+            "200": {
+              "description": "the resource being returned",
+              "content": {
+                "application/fhir+json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Patient"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/format"
+            },
+            {
+              "$ref": "#/components/parameters/pretty"
+            },
+            {
+              "$ref": "#/components/parameters/summary"
+            },
+            {
+              "$ref": "#/components/parameters/elements"
+            },
+            {
+              "name": "_id",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "description": "Logical id of this artifact\u003cbr /\u003e\n\u003cem\u003eNOTE\u003c/em\u003e: This US Core SearchParameter definition extends the usage context of\n\u003ca href\u003d\"http://hl7.org/fhir/R4/extension-capabilitystatement-expectation.html\"\u003ecapabilitystatement-expectation\u003c/a\u003e\n extension to formally express implementer conformannce expectations for these elements:\u003cbr /\u003e\n - multipleAnd\u003cbr /\u003e\n - multipleOr\u003cbr /\u003e\n - comparator\u003cbr /\u003e\n - modifier\u003cbr /\u003e\n - chain\u003cbr /\u003e\n\n "
+            },
+            {
+              "name": "birthdate",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "description": "The patient\u0027s date of birth\u003cbr /\u003e\n\u003cem\u003eNOTE\u003c/em\u003e: This US Core SearchParameter definition extends the usage context of\n\u003ca href\u003d\"http://hl7.org/fhir/R4/extension-capabilitystatement-expectation.html\"\u003ecapabilitystatement-expectation\u003c/a\u003e\n extension to formally express implementer conformannce expectations for these elements:\u003cbr /\u003e\n - multipleAnd\u003cbr /\u003e\n - multipleOr\u003cbr /\u003e\n - comparator\u003cbr /\u003e\n - modifier\u003cbr /\u003e\n - chain\u003cbr /\u003e\n\n "
+            },
+            {
+              "name": "family",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "description": "A portion of the family name of the patient\u003cbr /\u003e\n\u003cem\u003eNOTE\u003c/em\u003e: This US Core SearchParameter definition extends the usage context of\n\u003ca href\u003d\"http://hl7.org/fhir/R4/extension-capabilitystatement-expectation.html\"\u003ecapabilitystatement-expectation\u003c/a\u003e\n extension to formally express implementer conformannce expectations for these elements:\u003cbr /\u003e\n - multipleAnd\u003cbr /\u003e\n - multipleOr\u003cbr /\u003e\n - comparator\u003cbr /\u003e\n - modifier\u003cbr /\u003e\n - chain\u003cbr /\u003e\n\n "
+            },
+            {
+              "name": "gender",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "description": "Gender of the patient\u003cbr /\u003e\n\u003cem\u003eNOTE\u003c/em\u003e: This US Core SearchParameter definition extends the usage context of\n\u003ca href\u003d\"http://hl7.org/fhir/R4/extension-capabilitystatement-expectation.html\"\u003ecapabilitystatement-expectation\u003c/a\u003e\n extension to formally express implementer conformannce expectations for these elements:\u003cbr /\u003e\n - multipleAnd\u003cbr /\u003e\n - multipleOr\u003cbr /\u003e\n - comparator\u003cbr /\u003e\n - modifier\u003cbr /\u003e\n - chain\u003cbr /\u003e\n\n "
+            },
+            {
+              "name": "given",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "description": "A portion of the given name of the patient\u003cbr /\u003e\n\u003cem\u003eNOTE\u003c/em\u003e: This US Core SearchParameter definition extends the usage context of\n\u003ca href\u003d\"http://hl7.org/fhir/R4/extension-capabilitystatement-expectation.html\"\u003ecapabilitystatement-expectation\u003c/a\u003e\n extension to formally express implementer conformannce expectations for these elements:\u003cbr /\u003e\n - multipleAnd\u003cbr /\u003e\n - multipleOr\u003cbr /\u003e\n - comparator\u003cbr /\u003e\n - modifier\u003cbr /\u003e\n - chain\u003cbr /\u003e\n\n "
+            },
+            {
+              "name": "identifier",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "description": "A patient identifier\u003cbr /\u003e\n\u003cem\u003eNOTE\u003c/em\u003e: This US Core SearchParameter definition extends the usage context of\n\u003ca href\u003d\"http://hl7.org/fhir/R4/extension-capabilitystatement-expectation.html\"\u003ecapabilitystatement-expectation\u003c/a\u003e\n extension to formally express implementer conformannce expectations for these elements:\u003cbr /\u003e\n - multipleAnd\u003cbr /\u003e\n - multipleOr\u003cbr /\u003e\n - comparator\u003cbr /\u003e\n - modifier\u003cbr /\u003e\n - chain\u003cbr /\u003e\n\n "
+            },
+            {
+              "name": "name",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              },
+              "description": "A server defined search that may match any of the string fields in the HumanName, including family, give, prefix, suffix, suffix, and/or text\u003cbr /\u003e\n\u003cem\u003eNOTE\u003c/em\u003e: This US Core SearchParameter definition extends the usage context of\n\u003ca href\u003d\"http://hl7.org/fhir/R4/extension-capabilitystatement-expectation.html\"\u003ecapabilitystatement-expectation\u003c/a\u003e\n extension to formally express implementer conformannce expectations for these elements:\u003cbr /\u003e\n - multipleAnd\u003cbr /\u003e\n - multipleOr\u003cbr /\u003e\n - comparator\u003cbr /\u003e\n - modifier\u003cbr /\u003e\n - chain\u003cbr /\u003e\n\n "
+            }
+          ]
+        },
+        "post": {
+          "x-controller": "patients",
+          "x-operation": "createSingle",
+          "summary": "Create a new resource",
+          "operationId": "createPatient",
+          "requestBody": {
+            "description": "The new state of the resource",
+            "required": true,
+            "content": {
+              "application/fhir+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Patient"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "the resource being returned after being updated",
+              "headers": {
+                "ETag": {
+                  "description": "Version from Resource.meta.version as a weak ETag",
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/fhir+json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Patient"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/summary"
+            },
+            {
+              "$ref": "#/components/parameters/format"
+            },
+            {
+              "$ref": "#/components/parameters/pretty"
+            },
+            {
+              "$ref": "#/components/parameters/elements"
+            }
+          ]
+        }
+      },
+      "/Patient/{rid}": {
+        "summary": "Read/Write/etc resource instance of type Patient",
+        "description": "Access to services to manage the state of a single resource of type Patient",
+        "get": {
+          "x-controller": "patients",
+          "x-operation": "getSingle",
+          "summary": "Read the current state of the resource",
+          "operationId": "readPatient",
+          "responses": {
+            "200": {
+              "description": "the resource being returned",
+              "headers": {
+                "ETag": {
+                  "description": "Version from Resource.meta.version as a weak ETag",
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/fhir+json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Patient"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/rid"
+            },
+            {
+              "$ref": "#/components/parameters/summary"
+            },
+            {
+              "$ref": "#/components/parameters/format"
+            },
+            {
+              "$ref": "#/components/parameters/pretty"
+            },
+            {
+              "$ref": "#/components/parameters/elements"
+            }
+          ]
+        },
+        "put": {
+          "x-controller": "patients",
+          "x-operation": "updateSingle",
+          "summary": "Update the current state of the resource",
+          "operationId": "updatePatient",
+          "requestBody": {
+            "description": "The new state of the resource",
+            "required": true,
+            "content": {
+              "application/fhir+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Patient"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "the resource being returned after being updated",
+              "headers": {
+                "ETag": {
+                  "description": "Version from Resource.meta.version as a weak ETag",
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/fhir+json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Patient"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/rid"
+            },
+            {
+              "$ref": "#/components/parameters/summary"
+            },
+            {
+              "$ref": "#/components/parameters/format"
+            },
+            {
+              "$ref": "#/components/parameters/pretty"
+            },
+            {
+              "$ref": "#/components/parameters/elements"
+            }
+          ]
+        },
+        "delete": {
+          "x-controller": "patients",
+          "x-operation": "deleteSingle",
+          "summary": "Delete the resource so that it no exists (no read, search etc)",
+          "operationId": "deletePatient",
+          "responses": {
+            "204": {
+              "description": "If the resource is deleted - no content is returned",
+              "headers": {
+                "ETag": {
+                  "description": "Version from Resource.meta.version as a weak ETag",
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/rid"
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": { 
+        "HumanName": {
+          "description": "A human\u0027s name with the ability to identify parts and usage.",
+          "properties": {
+            "id": {
+              "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+              "type": "string"
+            },
+            "use": {
+              "description": "Identifies the purpose for this name.",
+              "enum": [
+                "usual",
+                "official",
+                "temp",
+                "nickname",
+                "anonymous",
+                "old",
+                "maiden"
+              ]
+            },
+            "text": {
+              "description": "Specifies the entire name as it should be displayed e.g. on an application UI. This may be provided instead of or as well as the specific parts.",
+              "type": "string"
+            },
+            "family": {
+              "description": "The part of a name that links to the genealogy. In some cultures (e.g. Eritrea) the family name of a son is the first name of his father.",
+              "type": "string"
+            },
+            "given": {
+              "description": "Given name.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "prefix": {
+              "description": "Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the start of the name.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "suffix": {
+              "description": "Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the end of the name.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "additionalProperties": false
+        },
+        "Identifier": {
+          "description": "An identifier - identifies some entity uniquely and unambiguously. Typically this is used for business identifiers.",
+          "properties": {
+            "id": {
+              "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+              "type": "string"
+            },
+            "use": {
+              "description": "The purpose of this identifier.",
+              "enum": [
+                "usual",
+                "official",
+                "temp",
+                "secondary",
+                "old"
+              ]
+            },
+            "value": {
+              "description": "The portion of the identifier typically relevant to the user and which is unique within the context of the system.",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "Patient": {
+          "description": "Demographics and other administrative information about an individual or animal receiving care or other health-related services.",
+          "properties": {
+            "resourceType": {
+              "description": "This is a Patient resource",
+              "type": "string"
+            },
+            "id": {
+              "description": "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
+              "type": "string"
+            },
+            "identifier": {
+              "description": "An identifier for this patient.",
+              "items": {
+                "$ref": "#/components/schemas/Identifier"
+              },
+              "type": "array"
+            },
+            "active": {
+              "description": "Whether this patient record is in active use. \nMany systems use this property to mark as non-current patients, such as those that have not been seen for a period of time based on an organization\u0027s business rules.\n\nIt is often used to filter patient lists to exclude inactive patients\n\nDeceased patients may also be marked as inactive for the same reasons, but may be active for some time after death.",
+              "type": "boolean"
+            },
+            "name": {
+              "description": "A name associated with the individual.",
+              "items": {
+                "$ref": "#/components/schemas/HumanName"
+              },
+              "type": "array"
+            },
+            "gender": {
+              "description": "Administrative Gender - the gender that the patient is considered to have for administration and record keeping purposes.",
+              "enum": [
+                "male",
+                "female",
+                "other",
+                "unknown"
+              ]
+            },
+            "birthDate": {
+              "description": "The date of birth for the individual.",
+              "format": "date",
+              "type": "string"
+            },
+            "deceasedBoolean": {
+              "description": "Indicates if the individual is deceased or not.",
+              "type": "boolean"
+            },
+            "deceasedDateTime": {
+              "description": "Indicates if the individual is deceased or not.",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "resourceType"
+          ]
+        }
+      },
+      "parameters": {
+        "rid": {
+          "name": "rid",
+          "in": "path",
+          "description": "id of the resource (\u003dResource.id)",
+          "required": true,
+          "style": "simple",
+          "schema": {
+            "type": "string"
+          }
+        },
+        "hid": {
+          "name": "hid",
+          "in": "path",
+          "description": "id of the history entry (\u003dResource.meta.versionId)",
+          "required": true,
+          "style": "simple",
+          "schema": {
+            "type": "string"
+          }
+        },
+        "summary": {
+          "name": "_summary",
+          "in": "query",
+          "description": "Requests the server to return a designated subset of the resource",
+          "style": "form",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "true",
+              "text",
+              "data",
+              "count",
+              "false"
+            ]
+          }
+        },
+        "format": {
+          "name": "_format",
+          "in": "query",
+          "description": "Specify alternative response formats by their MIME-types (when a client is unable acccess accept: header)",
+          "style": "form",
+          "schema": {
+            "type": "string",
+          }
+        },
+        "pretty": {
+          "name": "_pretty",
+          "in": "query",
+          "description": "Ask for a pretty printed response for human convenience",
+          "style": "form",
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        "elements": {
+          "name": "_elements",
+          "in": "query",
+          "description": "Requests the server to return a collection of elements from the resource",
+          "style": "form",
+          "explode": false,
+          "schema": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "count": {
+          "name": "_count",
+          "in": "query",
+          "description": "The maximum number of search results on a page. The server is not bound to return the number requested, but cannot return more",
+          "schema": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+  

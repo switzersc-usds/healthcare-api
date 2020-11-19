@@ -1,3 +1,5 @@
+'use strict'
+const { Pool } = require('pg')
 const express = require("express");
 const Enforcer = require("openapi-enforcer-middleware");
 const path = require("path");
