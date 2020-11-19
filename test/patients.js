@@ -6,6 +6,7 @@ process.env.NODE_ENV = 'test';
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let server = require('../index.js');
+let should = chai.should();
 
 
 chai.use(chaiHttp);
@@ -13,21 +14,21 @@ chai.use(chaiHttp);
 
 const expect = chai.expect;
 
-// Import this plugin
 const chaiResponseValidator = require('chai-openapi-response-validator');
 
-// Load an OpenAPI file (YAML or JSON) into this plugin
 chai.use(chaiResponseValidator('/Users/ssmg/dev/healthcare-api/openapi.json'));
 
-// Write your test (e.g. using Mocha)
 describe('GET /Patient', () => {
-  it('should satisfy OpenAPI spec', async () => {
+  it('should satisfy OpenAPI spec', (done) => {
 
-    const res = await chai.request(server).get('http://localhost:4000/Patient');
+    chai.request(server)
+        .get('/Patient')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('array');
+          res.should.satisfyApiSpec;
+      done();
+    });
 
-    expect(res.status).to.equal(200);
-
-    // Assert that the HTTP response satisfies the OpenAPI spec
-    expect(res).to.satisfyApiSpec;
-  });
+  }); 
 });
