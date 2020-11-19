@@ -35,6 +35,6 @@ Check out these lists of tools:
 
 If you want to view the API documentation generated from the OAS document, you can do so easily with open source and free SAAS tools.
 
-For example, check out the browsable docs from ReDoc by adding the link to the raw openapi.json file (https://raw.githubusercontent.com/switzersc-usds/master/openapi.json) here: https://redocly.github.io/redoc/
+For example, check out the browsable docs from ReDoc by adding the link to the raw openapi.json file (https://raw.githubusercontent.com/switzersc-usds/healthcare-api/main/openapi.json) here: https://redocly.github.io/redoc/
 
-Or paste the raw JSON file URL (https://raw.githubusercontent.com/switzersc-usds/master/openapi.json) in other UIs or editors of your choice, e.g. [Swagger UI](https://petstore.swagger.io/).
+Or paste the raw JSON file URL (hhttps://raw.githubusercontent.com/switzersc-usds/healthcare-api/main/openapi.json) in other UIs or editors of your choice, e.g. [Swagger UI](https://petstore.swagger.io/).
